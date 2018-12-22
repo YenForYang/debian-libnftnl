@@ -1,0 +1,3 @@
+debian/tmp/usr/include/libnftnl
+debian/tmp/usr/lib/x86_64-linux-gnu/libnftnl.so
+debian/tmp/usr/lib/x86_64-linux-gnu/pkgconfig/libnftnl.pc

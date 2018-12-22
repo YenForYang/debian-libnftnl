@@ -1,0 +1,762 @@
+ dpkg-buildpackage -D -us -uc -ui -b -Jauto -Pnobiarch,nocheck,nodoc
+dpkg-buildpackage: info: source package libnftnl
+dpkg-buildpackage: info: source version 1.1.2-2
+dpkg-buildpackage: info: source distribution unstable
+dpkg-buildpackage: info: source changed by Arturo Borrero Gonzalez <arturo@debian.org>
+ dpkg-source --before-build .
+dpkg-buildpackage: info: host architecture amd64
+dpkg-source: info: using options from pkg-libnfntl/debian/source/options: --extend-diff-ignore=(^|/)(compile|config\.sub|config\.guess|Makefile|configure|Makefile\.in|aclocal.m4|config.h.in|depcomp|INSTALL|install-sh|ltmain.sh|missing||libtool.m4|lt~obsolete.m4|ltoptions.m4|ltsugar.m4|ltversion.m4|.Po)
+ fakeroot debian/rules clean
+dh clean --with autoreconf
+   dh_clean
+	rm -f debian/debhelper-build-stamp
+	rm -rf debian/.debhelper/
+	rm -f -- debian/libnftnl11.substvars debian/libnftnl-dev.substvars debian/files
+	rm -fr -- debian/libnftnl11/ debian/tmp/ debian/libnftnl-dev/
+	find .  \( \( \
+		\( -path .\*/.git -o -path .\*/.svn -o -path .\*/.bzr -o -path .\*/.hg -o -path .\*/CVS -o -path .\*/.pc -o -path .\*/_darcs \) -prune -o -type f -a \
+	        \( -name '#*#' -o -name '.*~' -o -name '*~' -o -name DEADJOE \
+		 -o -name '*.orig' -o -name '*.rej' -o -name '*.bak' \
+		 -o -name '.*.orig' -o -name .*.rej -o -name '.SUMS' \
+		 -o -name TAGS -o \( -path '*/.deps/*' -a -name '*.P' \) \
+		\) -exec rm -f {} + \) -o \
+		\( -type d -a -name autom4te.cache -prune -exec rm -rf {} + \) \)
+FAKEROOTKEY=265828391 LD_LIBRARY_PATH=:/opt/intel/lib/intel64_lin:/opt/intel/tbb/lib/intel64/gcc4.7 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libfakeroot/libfakeroot-sysv.so debian/rules clean
+ debian/rules build
+dh build --with autoreconf
+   dh_update_autotools_config
+	install -d debian/.debhelper/bucket/files
+	cp -an --reflink=auto build-aux/config.guess debian/.debhelper/bucket/files/8131853dbc8c3be5171fa96353de7a884a79d3f1d6b3fbf48f99037f5f95fe27.tmp
+	mv debian/.debhelper/bucket/files/8131853dbc8c3be5171fa96353de7a884a79d3f1d6b3fbf48f99037f5f95fe27.tmp debian/.debhelper/bucket/files/8131853dbc8c3be5171fa96353de7a884a79d3f1d6b3fbf48f99037f5f95fe27
+	cp -f /usr/share/misc/config.guess ./build-aux/config.guess
+	cp -an --reflink=auto build-aux/config.sub debian/.debhelper/bucket/files/1ee0b1581032c46aac6ebd1de74b130f35082fb45a12e9ead42ad5c775f9b64f.tmp
+	mv debian/.debhelper/bucket/files/1ee0b1581032c46aac6ebd1de74b130f35082fb45a12e9ead42ad5c775f9b64f.tmp debian/.debhelper/bucket/files/1ee0b1581032c46aac6ebd1de74b130f35082fb45a12e9ead42ad5c775f9b64f
+	cp -f /usr/share/misc/config.sub ./build-aux/config.sub
+   dh_autoreconf
+	find ! -ipath "./debian/*" -a ! \( -path '*/.git/*' -o -path '*/.hg/*' -o -path '*/.bzr/*' -o -path '*/.svn/*' -o -path '*/CVS/*' \) -a  -type f -exec md5sum {} + -o -type l -printf "symlink  %p
+" > debian/autoreconf.before
+	grep -q ^XDT_ configure.ac
+	autoreconf -f -i
+libtoolize: putting auxiliary files in AC_CONFIG_AUX_DIR, 'build-aux'.
+libtoolize: copying file 'build-aux/ltmain.sh'
+libtoolize: putting macros in AC_CONFIG_MACRO_DIRS, 'm4'.
+libtoolize: copying file 'm4/libtool.m4'
+libtoolize: copying file 'm4/ltoptions.m4'
+libtoolize: copying file 'm4/ltsugar.m4'
+libtoolize: copying file 'm4/ltversion.m4'
+libtoolize: copying file 'm4/lt~obsolete.m4'
+configure.ac:8: installing 'build-aux/compile'
+configure.ac:10: installing 'build-aux/missing'
+examples/Makefile.am: installing 'build-aux/depcomp'
+	find ! -ipath "./debian/*" -a ! \( -path '*/.git/*' -o -path '*/.hg/*' -o -path '*/.bzr/*' -o -path '*/.svn/*' -o -path '*/CVS/*' \) -a  -type f -exec md5sum {} + -o -type l -printf "symlink  %p
+" > debian/autoreconf.after
+   dh_auto_configure
+	./configure --build=x86_64-linux-gnu --prefix=/usr --includedir=\${prefix}/include --mandir=\${prefix}/share/man --infodir=\${prefix}/share/info --sysconfdir=/etc --localstatedir=/var --disable-silent-rules --libdir=\${prefix}/lib/x86_64-linux-gnu --libexecdir=\${prefix}/lib/x86_64-linux-gnu --runstatedir=/run --disable-maintainer-mode --disable-dependency-tracking
+configure: WARNING: unrecognized options: --disable-maintainer-mode
+configure: loading site script /usr/share/config.site
+checking build system type... (cached) x86_64-pc-linux-gnu
+checking host system type... (cached) x86_64-pc-linux-gnu
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... (cached) o
+checking whether we are using the GNU C compiler... (cached) yes
+checking whether ccache icc accepts -g... (cached) yes
+checking for ccache icc option to accept ISO C89... none needed
+checking whether ccache icc understands -c and -o together... (cached) yes
+checking the archiver (xiar) interface... ar
+checking for a BSD-compatible install... /usr/bin/install
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /bin/mkdir -p
+checking for gawk... (cached) gawk
+checking whether make sets $(MAKE)... (cached) yes
+checking whether make supports the include directive... yes (GNU style)
+checking whether make supports nested variables... (cached) yes
+checking how to create a pax tar archive... (cached) gnutar
+checking dependency style of ccache icc... (cached) gcc3
+checking whether make supports nested variables... (cached) yes
+checking pkg-config is at least version 0.9.0... yes
+checking for LIBMNL... yes
+checking whether we are using the GNU C compiler... (cached) yes
+checking whether ccache icc accepts -g... (cached) yes
+checking for ccache icc option to accept ISO C89... (cached) none needed
+checking whether ccache icc understands -c and -o together... (cached) yes
+checking how to print strings... printf
+checking for a sed that does not truncate output... (cached) /bin/sed
+checking for grep that handles long lines and -e... (cached) /bin/grep
+checking for egrep... (cached) /bin/grep -E
+checking for fgrep... (cached) /bin/grep -F
+checking for ld used by ccache icc... (cached) xild -m elf_x86_64
+checking if the linker (xild -m elf_x86_64) is GNU ld... (cached) yes
+checking for BSD- or MS-compatible name lister (nm)... (cached) /usr/bin/x86_64-linux-gnu-nm -B
+checking the name lister (/usr/bin/x86_64-linux-gnu-nm -B) interface... (cached) BSD nm
+checking whether ln -s works... yes
+checking the maximum length of command line arguments... (cached) 1572864
+checking how to convert x86_64-pc-linux-gnu file names to x86_64-pc-linux-gnu format... func_convert_file_noop
+checking how to convert x86_64-pc-linux-gnu file names to toolchain format... func_convert_file_noop
+checking for xild -m elf_x86_64 option to reload object files... (cached) -r
+checking how to recognize dependent libraries... pass_all
+checking for dlltool... (cached) dlltool
+checking how to associate runtime and link libraries... (cached) printf %s\n
+checking for archiver @FILE support... (cached) @
+checking for strip... (cached) x86_64-linux-gnu-strip
+checking for ranlib... (cached) /usr/bin/x86_64-linux-gnu-ranlib
+checking command to parse /usr/bin/x86_64-linux-gnu-nm -B output from ccache icc object... ok
+checking for sysroot... no
+checking for a working dd... (cached) /bin/dd
+checking how to truncate binary pipes... /bin/dd bs=4096 count=1
+checking for mt... (cached) mt
+checking if mt is a manifest tool... no
+checking how to run the C preprocessor... ccache icc -E
+checking for ANSI C header files... (cached) yes
+checking for sys/types.h... (cached) yes
+checking for sys/stat.h... (cached) yes
+checking for stdlib.h... (cached) yes
+checking for string.h... (cached) yes
+checking for memory.h... (cached) yes
+checking for strings.h... (cached) yes
+checking for inttypes.h... (cached) yes
+checking for stdint.h... (cached) yes
+checking for unistd.h... (cached) yes
+checking for dlfcn.h... (cached) yes
+checking for objdir... (cached) .libs
+checking if ccache icc supports -fno-rtti -fno-exceptions... (cached) yes
+checking for ccache icc option to produce PIC... (cached) -fpic
+checking if ccache icc PIC flag -fpic works... (cached) yes
+checking if ccache icc static flag -static works... (cached) yes
+checking if ccache icc supports -c -o file.o... (cached) yes
+checking if ccache icc supports -c -o file.o... (cached) yes
+checking whether the ccache icc linker (xild -m elf_x86_64 -m elf_x86_64) supports shared libraries... xild: warning #10013: no objects specified for multi-file optimization
+xild: executing 'ld'
+yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... (cached) GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... no
+checking whether compiler accepts -fvisibility=hidden... yes
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating src/Makefile
+config.status: creating include/Makefile
+config.status: creating include/libnftnl/Makefile
+config.status: creating include/linux/Makefile
+config.status: creating include/linux/netfilter/Makefile
+config.status: creating examples/Makefile
+config.status: creating tests/Makefile
+config.status: creating libnftnl.pc
+config.status: creating doxygen.cfg
+config.status: creating config.h
+config.status: executing depfiles commands
+config.status: executing libtool commands
+configure: WARNING: unrecognized options: --disable-maintainer-mode
+   dh_auto_build
+	make -j8
+make[1]: Entering directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl'
+make  all-recursive
+make[2]: Entering directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl'
+Making all in src
+make[3]: Entering directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/src'
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o utils.lo utils.c
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o batch.lo batch.c
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o flowtable.lo flowtable.c
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o common.lo common.c
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o gen.lo gen.c
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o table.lo table.c
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o trace.lo trace.c
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o chain.lo chain.c
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c batch.c  -fpic -o .libs/batch.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c flowtable.c  -fpic -o .libs/flowtable.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c gen.c  -fpic -o .libs/gen.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c utils.c  -fpic -o .libs/utils.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c common.c  -fpic -o .libs/common.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c trace.c  -fpic -o .libs/trace.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c chain.c  -fpic -o .libs/chain.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c table.c  -fpic -o .libs/table.o
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.11 (CPU)       0.00 (elapsed)
+Back end time                        0.02 (CPU)       0.00 (elapsed)
+Total compilation time               0.14 (CPU)       0.00 (elapsed)
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o object.lo object.c
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.12 (CPU)       0.00 (elapsed)
+Back end time                        0.03 (CPU)       0.00 (elapsed)
+Total compilation time               0.16 (CPU)       0.00 (elapsed)
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.14 (CPU)       0.00 (elapsed)
+Back end time                        0.03 (CPU)       0.00 (elapsed)
+Total compilation time               0.17 (CPU)       0.00 (elapsed)
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o rule.lo rule.c
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.13 (CPU)       0.00 (elapsed)
+Back end time                        0.04 (CPU)       0.00 (elapsed)
+Total compilation time               0.17 (CPU)       0.00 (elapsed)
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o set.lo set.c
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.12 (CPU)       0.00 (elapsed)
+Back end time                        0.02 (CPU)       0.00 (elapsed)
+Total compilation time               0.14 (CPU)       0.00 (elapsed)
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o set_elem.lo set_elem.c
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o ruleset.lo ruleset.c
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.14 (CPU)       0.00 (elapsed)
+Back end time                        0.06 (CPU)       0.00 (elapsed)
+Total compilation time               0.21 (CPU)       0.00 (elapsed)
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o udata.lo udata.c
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.15 (CPU)       0.00 (elapsed)
+Back end time                        0.06 (CPU)       0.00 (elapsed)
+Total compilation time               0.21 (CPU)       0.00 (elapsed)
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr.lo expr.c
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c rule.c  -fpic -o .libs/rule.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c object.c  -fpic -o .libs/object.o
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.13 (CPU)       0.00 (elapsed)
+Back end time                        0.05 (CPU)       0.00 (elapsed)
+Total compilation time               0.18 (CPU)       0.00 (elapsed)
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c set.c  -fpic -o .libs/set.o
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr_ops.lo expr_ops.c
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c set_elem.c  -fpic -o .libs/set_elem.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c udata.c  -fpic -o .libs/udata.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c ruleset.c  -fpic -o .libs/ruleset.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr.c  -fpic -o .libs/expr.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr_ops.c  -fpic -o .libs/expr_ops.o
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.14 (CPU)       0.00 (elapsed)
+Back end time                        0.06 (CPU)       0.00 (elapsed)
+Total compilation time               0.19 (CPU)       0.00 (elapsed)
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.08 (CPU)       0.00 (elapsed)
+Back end time                        0.02 (CPU)       0.00 (elapsed)
+Total compilation time               0.10 (CPU)       0.00 (elapsed)
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.16 (CPU)       0.00 (elapsed)
+Back end time                        0.07 (CPU)       0.00 (elapsed)
+Total compilation time               0.23 (CPU)       0.00 (elapsed)
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/bitwise.lo expr/bitwise.c
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/byteorder.lo expr/byteorder.c
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/cmp.lo expr/cmp.c
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.15 (CPU)       0.00 (elapsed)
+Back end time                        0.06 (CPU)       0.00 (elapsed)
+Total compilation time               0.21 (CPU)       0.00 (elapsed)
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/range.lo expr/range.c
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.15 (CPU)       0.00 (elapsed)
+Back end time                        0.07 (CPU)       0.00 (elapsed)
+Total compilation time               0.22 (CPU)       0.00 (elapsed)
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/connlimit.lo expr/connlimit.c
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.13 (CPU)       0.00 (elapsed)
+Back end time                        0.05 (CPU)       0.00 (elapsed)
+Total compilation time               0.19 (CPU)       0.00 (elapsed)
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.10 (CPU)       0.00 (elapsed)
+Back end time                        0.01 (CPU)       0.00 (elapsed)
+Total compilation time               0.11 (CPU)       0.00 (elapsed)
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/counter.lo expr/counter.c
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/ct.lo expr/ct.c
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.13 (CPU)       0.00 (elapsed)
+Back end time                        0.03 (CPU)       0.00 (elapsed)
+Total compilation time               0.16 (CPU)       0.00 (elapsed)
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/data_reg.lo expr/data_reg.c
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/bitwise.c  -fpic -o expr/.libs/bitwise.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/cmp.c  -fpic -o expr/.libs/cmp.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/range.c  -fpic -o expr/.libs/range.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/byteorder.c  -fpic -o expr/.libs/byteorder.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/connlimit.c  -fpic -o expr/.libs/connlimit.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/counter.c  -fpic -o expr/.libs/counter.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/data_reg.c  -fpic -o expr/.libs/data_reg.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/ct.c  -fpic -o expr/.libs/ct.o
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.12 (CPU)       0.00 (elapsed)
+Back end time                        0.03 (CPU)       0.00 (elapsed)
+Total compilation time               0.15 (CPU)       0.00 (elapsed)
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.12 (CPU)       0.00 (elapsed)
+Back end time                        0.03 (CPU)       0.00 (elapsed)
+Total compilation time               0.15 (CPU)       0.00 (elapsed)
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.12 (CPU)       0.00 (elapsed)
+Back end time                        0.03 (CPU)       0.00 (elapsed)
+Total compilation time               0.15 (CPU)       0.00 (elapsed)
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/dup.lo expr/dup.c
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/exthdr.lo expr/exthdr.c
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/flow_offload.lo expr/flow_offload.c
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.12 (CPU)       0.00 (elapsed)
+Back end time                        0.03 (CPU)       0.00 (elapsed)
+Total compilation time               0.15 (CPU)       0.00 (elapsed)
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.14 (CPU)       0.00 (elapsed)
+Back end time                        0.03 (CPU)       0.00 (elapsed)
+Total compilation time               0.16 (CPU)       0.00 (elapsed)
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/fib.lo expr/fib.c
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/fwd.lo expr/fwd.c
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.12 (CPU)       0.00 (elapsed)
+Back end time                        0.02 (CPU)       0.00 (elapsed)
+Total compilation time               0.15 (CPU)       0.00 (elapsed)
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/limit.lo expr/limit.c
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.13 (CPU)       0.00 (elapsed)
+Back end time                        0.03 (CPU)       0.00 (elapsed)
+Total compilation time               0.16 (CPU)       0.00 (elapsed)
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/log.lo expr/log.c
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.12 (CPU)       0.00 (elapsed)
+Back end time                        0.03 (CPU)       1.00 (elapsed)
+Total compilation time               0.15 (CPU)       1.00 (elapsed)
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/dup.c  -fpic -o expr/.libs/dup.o
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/lookup.lo expr/lookup.c
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/exthdr.c  -fpic -o expr/.libs/exthdr.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/flow_offload.c  -fpic -o expr/.libs/flow_offload.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/fwd.c  -fpic -o expr/.libs/fwd.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/fib.c  -fpic -o expr/.libs/fib.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/limit.c  -fpic -o expr/.libs/limit.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/log.c  -fpic -o expr/.libs/log.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/lookup.c  -fpic -o expr/.libs/lookup.o
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.12 (CPU)       0.00 (elapsed)
+Back end time                        0.03 (CPU)       0.00 (elapsed)
+Total compilation time               0.15 (CPU)       0.00 (elapsed)
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/dynset.lo expr/dynset.c
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.12 (CPU)       0.00 (elapsed)
+Back end time                        0.02 (CPU)       0.00 (elapsed)
+Total compilation time               0.14 (CPU)       0.00 (elapsed)
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/immediate.lo expr/immediate.c
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.13 (CPU)       0.00 (elapsed)
+Back end time                        0.03 (CPU)       0.00 (elapsed)
+Total compilation time               0.16 (CPU)       0.00 (elapsed)
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/match.lo expr/match.c
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.12 (CPU)       0.00 (elapsed)
+Back end time                        0.03 (CPU)       0.00 (elapsed)
+Total compilation time               0.15 (CPU)       0.00 (elapsed)
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.12 (CPU)       0.00 (elapsed)
+Back end time                        0.02 (CPU)       0.00 (elapsed)
+Total compilation time               0.15 (CPU)       0.00 (elapsed)
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/meta.lo expr/meta.c
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/numgen.lo expr/numgen.c
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.12 (CPU)       0.00 (elapsed)
+Back end time                        0.03 (CPU)       0.00 (elapsed)
+Total compilation time               0.15 (CPU)       0.00 (elapsed)
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/nat.lo expr/nat.c
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.12 (CPU)       0.00 (elapsed)
+Back end time                        0.03 (CPU)       0.00 (elapsed)
+Total compilation time               0.15 (CPU)       0.00 (elapsed)
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/dynset.c  -fpic -o expr/.libs/dynset.o
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/tproxy.lo expr/tproxy.c
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/match.c  -fpic -o expr/.libs/match.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/immediate.c  -fpic -o expr/.libs/immediate.o
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.14 (CPU)       0.00 (elapsed)
+Back end time                        0.03 (CPU)       0.00 (elapsed)
+Total compilation time               0.17 (CPU)       0.00 (elapsed)
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/objref.lo expr/objref.c
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/numgen.c  -fpic -o expr/.libs/numgen.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/meta.c  -fpic -o expr/.libs/meta.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/nat.c  -fpic -o expr/.libs/nat.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/tproxy.c  -fpic -o expr/.libs/tproxy.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/objref.c  -fpic -o expr/.libs/objref.o
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.13 (CPU)       0.00 (elapsed)
+Back end time                        0.03 (CPU)       0.00 (elapsed)
+Total compilation time               0.16 (CPU)       0.00 (elapsed)
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/payload.lo expr/payload.c
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.12 (CPU)       0.00 (elapsed)
+Back end time                        0.03 (CPU)       1.00 (elapsed)
+Total compilation time               0.15 (CPU)       1.00 (elapsed)
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.13 (CPU)       0.00 (elapsed)
+Back end time                        0.03 (CPU)       1.00 (elapsed)
+Total compilation time               0.15 (CPU)       1.00 (elapsed)
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/queue.lo expr/queue.c
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/quota.lo expr/quota.c
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.12 (CPU)       1.00 (elapsed)
+Back end time                        0.03 (CPU)       0.00 (elapsed)
+Total compilation time               0.15 (CPU)       1.00 (elapsed)
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/reject.lo expr/reject.c
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.12 (CPU)       1.00 (elapsed)
+Back end time                        0.03 (CPU)       0.00 (elapsed)
+Total compilation time               0.15 (CPU)       1.00 (elapsed)
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.13 (CPU)       1.00 (elapsed)
+Back end time                        0.03 (CPU)       0.00 (elapsed)
+Total compilation time               0.15 (CPU)       1.00 (elapsed)
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/rt.lo expr/rt.c
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/target.lo expr/target.c
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/payload.c  -fpic -o expr/.libs/payload.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/queue.c  -fpic -o expr/.libs/queue.o
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.12 (CPU)       0.00 (elapsed)
+Back end time                        0.02 (CPU)       0.00 (elapsed)
+Total compilation time               0.15 (CPU)       0.00 (elapsed)
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/tunnel.lo expr/tunnel.c
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/quota.c  -fpic -o expr/.libs/quota.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/rt.c  -fpic -o expr/.libs/rt.o
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.12 (CPU)       0.00 (elapsed)
+Back end time                        0.03 (CPU)       0.00 (elapsed)
+Total compilation time               0.15 (CPU)       0.00 (elapsed)
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/reject.c  -fpic -o expr/.libs/reject.o
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/masq.lo expr/masq.c
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/target.c  -fpic -o expr/.libs/target.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/tunnel.c  -fpic -o expr/.libs/tunnel.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/masq.c  -fpic -o expr/.libs/masq.o
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.12 (CPU)       0.00 (elapsed)
+Back end time                        0.03 (CPU)       0.00 (elapsed)
+Total compilation time               0.15 (CPU)       0.00 (elapsed)
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.12 (CPU)       0.00 (elapsed)
+Back end time                        0.03 (CPU)       0.00 (elapsed)
+Total compilation time               0.15 (CPU)       0.00 (elapsed)
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.12 (CPU)       0.00 (elapsed)
+Back end time                        0.03 (CPU)       0.00 (elapsed)
+Total compilation time               0.15 (CPU)       0.00 (elapsed)
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/redir.lo expr/redir.c
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/hash.lo expr/hash.c
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/socket.lo expr/socket.c
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.12 (CPU)       0.00 (elapsed)
+Back end time                        0.02 (CPU)       0.00 (elapsed)
+Total compilation time               0.15 (CPU)       0.00 (elapsed)
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/osf.lo expr/osf.c
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.13 (CPU)       0.00 (elapsed)
+Back end time                        0.02 (CPU)       0.00 (elapsed)
+Total compilation time               0.15 (CPU)       0.00 (elapsed)
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.12 (CPU)       0.00 (elapsed)
+Back end time                        0.02 (CPU)       0.00 (elapsed)
+Total compilation time               0.15 (CPU)       0.00 (elapsed)
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o expr/xfrm.lo expr/xfrm.c
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o obj/counter.lo obj/counter.c
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/redir.c  -fpic -o expr/.libs/redir.o
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.12 (CPU)       0.00 (elapsed)
+Back end time                        0.02 (CPU)       0.00 (elapsed)
+Total compilation time               0.15 (CPU)       0.00 (elapsed)
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o obj/ct_helper.lo obj/ct_helper.c
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/hash.c  -fpic -o expr/.libs/hash.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/socket.c  -fpic -o expr/.libs/socket.o
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.12 (CPU)       0.00 (elapsed)
+Back end time                        0.02 (CPU)       0.00 (elapsed)
+Total compilation time               0.15 (CPU)       0.00 (elapsed)
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/osf.c  -fpic -o expr/.libs/osf.o
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o obj/quota.lo obj/quota.c
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c obj/counter.c  -fpic -o obj/.libs/counter.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c expr/xfrm.c  -fpic -o expr/.libs/xfrm.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c obj/ct_helper.c  -fpic -o obj/.libs/ct_helper.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c obj/quota.c  -fpic -o obj/.libs/quota.o
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.13 (CPU)       1.00 (elapsed)
+Back end time                        0.03 (CPU)       0.00 (elapsed)
+Total compilation time               0.15 (CPU)       1.00 (elapsed)
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.12 (CPU)       0.00 (elapsed)
+Back end time                        0.03 (CPU)       0.00 (elapsed)
+Total compilation time               0.15 (CPU)       1.00 (elapsed)
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o obj/tunnel.lo obj/tunnel.c
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o obj/limit.lo obj/limit.c
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.12 (CPU)       0.00 (elapsed)
+Back end time                        0.03 (CPU)       0.00 (elapsed)
+Total compilation time               0.15 (CPU)       0.00 (elapsed)
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o obj/ct_timeout.lo obj/ct_timeout.c
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.12 (CPU)       0.00 (elapsed)
+Back end time                        0.02 (CPU)       0.00 (elapsed)
+Total compilation time               0.15 (CPU)       0.00 (elapsed)
+/bin/bash ../libtool  --tag=CC   --mode=compile ccache icc -DHAVE_CONFIG_H -I. -I..  -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include   -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c -o obj/secmark.lo obj/secmark.c
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.12 (CPU)       0.00 (elapsed)
+Back end time                        0.02 (CPU)       0.00 (elapsed)
+Total compilation time               0.15 (CPU)       0.00 (elapsed)
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c obj/tunnel.c  -fpic -o obj/.libs/tunnel.o
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c obj/limit.c  -fpic -o obj/.libs/limit.o
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.12 (CPU)       0.00 (elapsed)
+Back end time                        0.03 (CPU)       0.00 (elapsed)
+Total compilation time               0.15 (CPU)       0.00 (elapsed)
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.12 (CPU)       0.00 (elapsed)
+Back end time                        0.03 (CPU)       0.00 (elapsed)
+Total compilation time               0.15 (CPU)       0.00 (elapsed)
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c obj/ct_timeout.c  -fpic -o obj/.libs/ct_timeout.o
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.12 (CPU)       0.00 (elapsed)
+Back end time                        0.02 (CPU)       0.00 (elapsed)
+Total compilation time               0.14 (CPU)       0.00 (elapsed)
+libtool: compile:  ccache icc -DHAVE_CONFIG_H -I. -I.. -D_FILE_OFFSET_BITS=64 -D_REENTRANT -I../include -Wdate-time -D_FORTIFY_SOURCE=2 -Wall -Waggregate-return -Wmissing-declarations -Wmissing-prototypes -Wshadow -Wstrict-prototypes -Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -c obj/secmark.c  -fpic -o obj/.libs/secmark.o
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.12 (CPU)       0.00 (elapsed)
+Back end time                        0.03 (CPU)       0.00 (elapsed)
+Total compilation time               0.15 (CPU)       0.00 (elapsed)
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.13 (CPU)       0.00 (elapsed)
+Back end time                        0.04 (CPU)       0.00 (elapsed)
+Total compilation time               0.17 (CPU)       0.00 (elapsed)
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.11 (CPU)       0.00 (elapsed)
+Back end time                        0.02 (CPU)       0.00 (elapsed)
+Total compilation time               0.14 (CPU)       0.00 (elapsed)
+icc: command line warning #10006: ignoring unknown option '-fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=.'
+Front end time                       0.12 (CPU)       0.00 (elapsed)
+Back end time                        0.03 (CPU)       0.00 (elapsed)
+Total compilation time               0.15 (CPU)       0.00 (elapsed)
+/bin/bash ../libtool  --tag=CC   --mode=link ccache icc -Wall -Waggregate-return -Wmissing-declarations 	-Wmissing-prototypes -Wshadow -Wstrict-prototypes 	-Wformat=2 -Wwrite-strings -pipe -fvisibility=hidden -g -O2 -fdebug-prefix-map=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl=. -Wformat -march=native -pipe -fstack-security-check -Wformat-security -Wl,--version-script=./libnftnl.map -version-info 11:0:0 -Wl,-z,relro -Wl,-z,now -Wl,--as-needed,--gc-sections,--relax -o libnftnl.la -rpath /usr/lib/x86_64-linux-gnu utils.lo batch.lo flowtable.lo common.lo gen.lo table.lo trace.lo chain.lo object.lo rule.lo set.lo set_elem.lo ruleset.lo udata.lo expr.lo expr_ops.lo expr/bitwise.lo expr/byteorder.lo expr/cmp.lo expr/range.lo expr/connlimit.lo expr/counter.lo expr/ct.lo expr/data_reg.lo expr/dup.lo expr/exthdr.lo expr/flow_offload.lo expr/fib.lo expr/fwd.lo expr/limit.lo expr/log.lo expr/lookup.lo expr/dynset.lo expr/immediate.lo expr/match.lo expr/meta.lo expr/numgen.lo expr/nat.lo expr/tproxy.lo expr/objref.lo expr/payload.lo expr/queue.lo expr/quota.lo expr/reject.lo expr/rt.lo expr/target.lo expr/tunnel.lo expr/masq.lo expr/redir.lo expr/hash.lo expr/socket.lo expr/osf.lo expr/xfrm.lo obj/counter.lo obj/ct_helper.lo obj/quota.lo obj/tunnel.lo obj/limit.lo obj/ct_timeout.lo obj/secmark.lo -lmnl 
+libtool: link: ccache icc -shared  -fpic  .libs/utils.o .libs/batch.o .libs/flowtable.o .libs/common.o .libs/gen.o .libs/table.o .libs/trace.o .libs/chain.o .libs/object.o .libs/rule.o .libs/set.o .libs/set_elem.o .libs/ruleset.o .libs/udata.o .libs/expr.o .libs/expr_ops.o expr/.libs/bitwise.o expr/.libs/byteorder.o expr/.libs/cmp.o expr/.libs/range.o expr/.libs/connlimit.o expr/.libs/counter.o expr/.libs/ct.o expr/.libs/data_reg.o expr/.libs/dup.o expr/.libs/exthdr.o expr/.libs/flow_offload.o expr/.libs/fib.o expr/.libs/fwd.o expr/.libs/limit.o expr/.libs/log.o expr/.libs/lookup.o expr/.libs/dynset.o expr/.libs/immediate.o expr/.libs/match.o expr/.libs/meta.o expr/.libs/numgen.o expr/.libs/nat.o expr/.libs/tproxy.o expr/.libs/objref.o expr/.libs/payload.o expr/.libs/queue.o expr/.libs/quota.o expr/.libs/reject.o expr/.libs/rt.o expr/.libs/target.o expr/.libs/tunnel.o expr/.libs/masq.o expr/.libs/redir.o expr/.libs/hash.o expr/.libs/socket.o expr/.libs/osf.o expr/.libs/xfrm.o obj/.libs/counter.o obj/.libs/ct_helper.o obj/.libs/quota.o obj/.libs/tunnel.o obj/.libs/limit.o obj/.libs/ct_timeout.o obj/.libs/secmark.o   -lmnl  -g -O2 -march=native -Wl,--version-script=./libnftnl.map -Wl,-z -Wl,relro -Wl,-z -Wl,now -Wl,--as-needed -Wl,--gc-sections -Wl,--relax   -Wl,-soname -Wl,libnftnl.so.11 -o .libs/libnftnl.so.11.0.0
+libtool: link: (cd ".libs" && rm -f "libnftnl.so.11" && ln -s "libnftnl.so.11.0.0" "libnftnl.so.11")
+libtool: link: (cd ".libs" && rm -f "libnftnl.so" && ln -s "libnftnl.so.11.0.0" "libnftnl.so")
+libtool: link: ( cd ".libs" && rm -f "libnftnl.la" && ln -s "../libnftnl.la" "libnftnl.la" )
+make[3]: Leaving directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/src'
+Making all in include
+make[3]: Entering directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/include'
+Making all in libnftnl
+make[4]: Entering directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/include/libnftnl'
+make[4]: Nothing to be done for 'all'.
+make[4]: Leaving directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/include/libnftnl'
+Making all in linux
+make[4]: Entering directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/include/linux'
+Making all in netfilter
+make[5]: Entering directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/include/linux/netfilter'
+make[5]: Nothing to be done for 'all'.
+make[5]: Leaving directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/include/linux/netfilter'
+make[5]: Entering directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/include/linux'
+make[5]: Nothing to be done for 'all-am'.
+make[5]: Leaving directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/include/linux'
+make[4]: Leaving directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/include/linux'
+make[4]: Entering directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/include'
+make[4]: Nothing to be done for 'all-am'.
+make[4]: Leaving directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/include'
+make[3]: Leaving directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/include'
+Making all in examples
+make[3]: Entering directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/examples'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/examples'
+Making all in tests
+make[3]: Entering directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/tests'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/tests'
+make[3]: Entering directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl'
+make[3]: Leaving directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl'
+make[2]: Leaving directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl'
+make[1]: Leaving directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl'
+   dh_auto_test
+   create-stamp debian/debhelper-build-stamp
+ fakeroot debian/rules binary
+dh binary --with autoreconf
+   dh_testroot
+   dh_prep
+	rm -f -- debian/libnftnl11.substvars debian/libnftnl-dev.substvars
+	rm -fr -- debian/.debhelper/generated/libnftnl11/ debian/libnftnl11/ debian/tmp/ debian/.debhelper/generated/libnftnl-dev/ debian/libnftnl-dev/
+   dh_auto_install
+	install -d /dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/debian/tmp
+	make -j1 install DESTDIR=/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/debian/tmp AM_UPDATE_INFO_DIR=no
+make[1]: Entering directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl'
+Making install in src
+make[2]: Entering directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/src'
+make[3]: Entering directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/src'
+ /bin/mkdir -p '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/debian/tmp/usr/lib/x86_64-linux-gnu'
+ /bin/bash ../libtool   --mode=install /usr/bin/install   libnftnl.la '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/debian/tmp/usr/lib/x86_64-linux-gnu'
+libtool: install: /usr/bin/install .libs/libnftnl.so.11.0.0 /dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/debian/tmp/usr/lib/x86_64-linux-gnu/libnftnl.so.11.0.0
+libtool: install: (cd /dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/debian/tmp/usr/lib/x86_64-linux-gnu && { ln -s -f libnftnl.so.11.0.0 libnftnl.so.11 || { rm -f libnftnl.so.11 && ln -s libnftnl.so.11.0.0 libnftnl.so.11; }; })
+libtool: install: (cd /dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/debian/tmp/usr/lib/x86_64-linux-gnu && { ln -s -f libnftnl.so.11.0.0 libnftnl.so || { rm -f libnftnl.so && ln -s libnftnl.so.11.0.0 libnftnl.so; }; })
+libtool: install: /usr/bin/install .libs/libnftnl.lai /dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/debian/tmp/usr/lib/x86_64-linux-gnu/libnftnl.la
+libtool: warning: remember to run 'libtool --finish /usr/lib/x86_64-linux-gnu'
+make[3]: Nothing to be done for 'install-data-am'.
+make[3]: Leaving directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/src'
+make[2]: Leaving directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/src'
+Making install in include
+make[2]: Entering directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/include'
+Making install in libnftnl
+make[3]: Entering directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/include/libnftnl'
+make[4]: Entering directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/include/libnftnl'
+make[4]: Nothing to be done for 'install-exec-am'.
+ /bin/mkdir -p '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/debian/tmp/usr/include/libnftnl'
+ /usr/bin/install -m 644 batch.h table.h trace.h chain.h object.h rule.h expr.h set.h flowtable.h ruleset.h common.h udata.h gen.h '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/debian/tmp/usr/include/libnftnl'
+make[4]: Leaving directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/include/libnftnl'
+make[3]: Leaving directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/include/libnftnl'
+Making install in linux
+make[3]: Entering directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/include/linux'
+Making install in netfilter
+make[4]: Entering directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/include/linux/netfilter'
+make[5]: Entering directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/include/linux/netfilter'
+make[5]: Nothing to be done for 'install-exec-am'.
+make[5]: Nothing to be done for 'install-data-am'.
+make[5]: Leaving directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/include/linux/netfilter'
+make[4]: Leaving directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/include/linux/netfilter'
+make[4]: Entering directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/include/linux'
+make[5]: Entering directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/include/linux'
+make[5]: Nothing to be done for 'install-exec-am'.
+make[5]: Nothing to be done for 'install-data-am'.
+make[5]: Leaving directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/include/linux'
+make[4]: Leaving directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/include/linux'
+make[3]: Leaving directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/include/linux'
+make[3]: Entering directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/include'
+make[4]: Entering directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/include'
+make[4]: Nothing to be done for 'install-exec-am'.
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/include'
+make[3]: Leaving directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/include'
+make[2]: Leaving directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/include'
+Making install in examples
+make[2]: Entering directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/examples'
+make[3]: Entering directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/examples'
+make[3]: Nothing to be done for 'install-exec-am'.
+make[3]: Nothing to be done for 'install-data-am'.
+make[3]: Leaving directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/examples'
+make[2]: Leaving directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/examples'
+Making install in tests
+make[2]: Entering directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/tests'
+make[3]: Entering directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/tests'
+make[3]: Nothing to be done for 'install-exec-am'.
+make[3]: Nothing to be done for 'install-data-am'.
+make[3]: Leaving directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/tests'
+make[2]: Leaving directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/tests'
+make[2]: Entering directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl'
+make[3]: Entering directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl'
+make[3]: Nothing to be done for 'install-exec-am'.
+ /bin/mkdir -p '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/debian/tmp/usr/lib/x86_64-linux-gnu/pkgconfig'
+ /usr/bin/install -m 644 libnftnl.pc '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl/debian/tmp/usr/lib/x86_64-linux-gnu/pkgconfig'
+make[3]: Leaving directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl'
+make[2]: Leaving directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl'
+make[1]: Leaving directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl'
+   dh_install
+	install -d debian/libnftnl11//usr/lib/x86_64-linux-gnu
+	cp --reflink=auto -a debian/tmp/usr/lib/x86_64-linux-gnu/libnftnl.so.11 debian/tmp/usr/lib/x86_64-linux-gnu/libnftnl.so.11.0.0 debian/libnftnl11//usr/lib/x86_64-linux-gnu/
+	install -d debian/.debhelper/generated/libnftnl11
+	install -d debian/libnftnl-dev//usr/include
+	cp --reflink=auto -a debian/tmp/usr/include/libnftnl debian/libnftnl-dev//usr/include/
+	install -d debian/libnftnl-dev//usr/lib/x86_64-linux-gnu
+	cp --reflink=auto -a debian/tmp/usr/lib/x86_64-linux-gnu/libnftnl.so debian/libnftnl-dev//usr/lib/x86_64-linux-gnu/
+	install -d debian/libnftnl-dev//usr/lib/x86_64-linux-gnu/pkgconfig
+	cp --reflink=auto -a debian/tmp/usr/lib/x86_64-linux-gnu/pkgconfig/libnftnl.pc debian/libnftnl-dev//usr/lib/x86_64-linux-gnu/pkgconfig/
+	install -d debian/.debhelper/generated/libnftnl-dev
+   dh_installdocs
+	install -d debian/libnftnl11/usr/share/doc/libnftnl11
+	install -p -m0644 debian/copyright debian/libnftnl11/usr/share/doc/libnftnl11/copyright
+	install -d debian/libnftnl-dev/usr/share/doc/libnftnl-dev
+	install -p -m0644 debian/copyright debian/libnftnl-dev/usr/share/doc/libnftnl-dev/copyright
+   dh_installchangelogs
+	install -p -m0644 debian/changelog debian/libnftnl11/usr/share/doc/libnftnl11/changelog.Debian
+	install -p -m0644 debian/changelog debian/libnftnl-dev/usr/share/doc/libnftnl-dev/changelog.Debian
+   dh_installexamples
+   dh_perl
+   dh_link
+	rm -f debian/libnftnl11/usr/lib/x86_64-linux-gnu/libnftnl.so.11
+	ln -s libnftnl.so.11.0.0 debian/libnftnl11/usr/lib/x86_64-linux-gnu/libnftnl.so.11
+	rm -f debian/libnftnl-dev/usr/lib/x86_64-linux-gnu/libnftnl.so
+	ln -s libnftnl.so.11.0.0 debian/libnftnl-dev/usr/lib/x86_64-linux-gnu/libnftnl.so
+   dh_strip_nondeterminism
+   dh_compress
+	cd debian/libnftnl11
+	cd debian/libnftnl-dev
+	chmod a-x usr/share/doc/libnftnl11/changelog.Debian
+	chmod a-x usr/share/doc/libnftnl-dev/changelog.Debian
+	gzip -9nf usr/share/doc/libnftnl11/changelog.Debian
+	gzip -9nf usr/share/doc/libnftnl-dev/changelog.Debian
+	cd '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl'
+	cd '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl'
+   dh_fixperms
+	find debian/libnftnl11 -true -print0 2>/dev/null | xargs -0r chown --no-dereference 0:0
+	find debian/libnftnl-dev -true -print0 2>/dev/null | xargs -0r chown --no-dereference 0:0
+	find debian/libnftnl11 ! -type l -a -true -a -true -print0 2>/dev/null | xargs -0r chmod go=rX,u+rw,a-s
+	find debian/libnftnl-dev ! -type l -a -true -a -true -print0 2>/dev/null | xargs -0r chmod go=rX,u+rw,a-s
+	find debian/libnftnl11/usr/share/doc -type f -a -true -a ! -regex 'debian/libnftnl11/usr/share/doc/[^/]*/examples/.*' -print0 2>/dev/null | xargs -0r chmod 0644
+	find debian/libnftnl-dev/usr/share/doc -type f -a -true -a ! -regex 'debian/libnftnl-dev/usr/share/doc/[^/]*/examples/.*' -print0 2>/dev/null | xargs -0r chmod 0644
+	find debian/libnftnl11/usr/share/doc -type d -a -true -a -true -print0 2>/dev/null | xargs -0r chmod 0755
+	find debian/libnftnl-dev/usr/share/doc -type d -a -true -a -true -print0 2>/dev/null | xargs -0r chmod 0755
+	find debian/libnftnl11 -type f \( -name '*.so.*' -o -name '*.so' -o -name '*.la' -o -name '*.a' -o -name '*.js' -o -name '*.css' -o -name '*.scss' -o -name '*.sass' -o -name '*.jpeg' -o -name '*.jpg' -o -name '*.png' -o -name '*.gif' -o -name '*.cmxs' \) -a -true -a -true -print0 2>/dev/null | xargs -0r chmod 0644
+	find debian/libnftnl-dev/usr/include -type f -a -true -a -true -print0 2>/dev/null | xargs -0r chmod 0644
+	find debian/libnftnl11/usr/lib -type f -name '*.ali' -a -true -a -true -print0 2>/dev/null | xargs -0r chmod uga-w
+	find debian/libnftnl-dev -type f \( -name '*.so.*' -o -name '*.so' -o -name '*.la' -o -name '*.a' -o -name '*.js' -o -name '*.css' -o -name '*.scss' -o -name '*.sass' -o -name '*.jpeg' -o -name '*.jpg' -o -name '*.png' -o -name '*.gif' -o -name '*.cmxs' \) -a -true -a -true -print0 2>/dev/null | xargs -0r chmod 0644
+	find debian/libnftnl-dev/usr/lib -type f -name '*.ali' -a -true -a -true -print0 2>/dev/null | xargs -0r chmod uga-w
+   dh_missing
+   debian/rules override_dh_strip
+make[1]: Entering directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl'
+dh_strip --dbgsym-migration='libnftnl-dbg (<< 1.0.7-2~)'
+	install -d debian/.debhelper/libnftnl11/dbgsym-root/usr/lib/debug/.build-id/71
+	objcopy --only-keep-debug --compress-debug-sections debian/libnftnl11/usr/lib/x86_64-linux-gnu/libnftnl.so.11.0.0 debian/.debhelper/libnftnl11/dbgsym-root/usr/lib/debug/.build-id/71/f4007f2894bf6375ed6474e7dbd2113cac9631.debug
+	chmod 0644 -- debian/.debhelper/libnftnl11/dbgsym-root/usr/lib/debug/.build-id/71/f4007f2894bf6375ed6474e7dbd2113cac9631.debug
+	chown 0:0 -- debian/.debhelper/libnftnl11/dbgsym-root/usr/lib/debug/.build-id/71/f4007f2894bf6375ed6474e7dbd2113cac9631.debug
+	strip --remove-section=.comment --remove-section=.note --strip-unneeded debian/libnftnl11/usr/lib/x86_64-linux-gnu/libnftnl.so.11.0.0
+	objcopy --add-gnu-debuglink debian/.debhelper/libnftnl11/dbgsym-root/usr/lib/debug/.build-id/71/f4007f2894bf6375ed6474e7dbd2113cac9631.debug debian/libnftnl11/usr/lib/x86_64-linux-gnu/libnftnl.so.11.0.0
+	install -d debian/.debhelper/libnftnl11/dbgsym-root/usr/share/doc
+	ln -s libnftnl11 debian/.debhelper/libnftnl11/dbgsym-root/usr/share/doc/libnftnl11-dbgsym
+make[1]: Leaving directory '/dev/shm/systemd/test/pkg-iptables/deps/pkg-libnftnl/pkg-libnfntl'
+   dh_makeshlibs
+	rm -f debian/libnftnl11/DEBIAN/shlibs
+	install -d debian/libnftnl11/DEBIAN
+	echo "libnftnl 11 libnftnl11" >> debian/libnftnl11/DEBIAN/shlibs
+	chmod 0644 -- debian/libnftnl11/DEBIAN/shlibs
+	chown 0:0 -- debian/libnftnl11/DEBIAN/shlibs
+	dpkg-gensymbols -plibnftnl11 -Idebian/libnftnl11.symbols -Pdebian/libnftnl11 -edebian/libnftnl11/usr/lib/x86_64-linux-gnu/libnftnl.so.11.0.0
+	mv debian/.debhelper/generated/libnftnl11/triggers.new debian/.debhelper/generated/libnftnl11/triggers
+	rm -f debian/libnftnl-dev/DEBIAN/shlibs
+   dh_shlibdeps
+	dpkg-shlibdeps -Tdebian/libnftnl11.substvars debian/libnftnl11/usr/lib/x86_64-linux-gnu/libnftnl.so.11.0.0
+dpkg-shlibdeps: warning: deprecated use of LD_LIBRARY_PATH with private library directory which interferes with cross-building, please use -l option instead
+dpkg-shlibdeps: warning: package could avoid a useless dependency if debian/libnftnl11/usr/lib/x86_64-linux-gnu/libnftnl.so.11.0.0 was not linked against libgcc_s.so.1 (it uses none of the library's symbols)
+dpkg-shlibdeps: warning: package could avoid a useless dependency if debian/libnftnl11/usr/lib/x86_64-linux-gnu/libnftnl.so.11.0.0 was not linked against libdl.so.2 (it uses none of the library's symbols)
+   dh_installdeb
+	install -p -m0644 debian/.debhelper/generated/libnftnl11/triggers debian/libnftnl11/DEBIAN/triggers
+	install -d debian/libnftnl-dev/DEBIAN
+   dh_gencontrol
+	echo misc:Depends= >> debian/libnftnl-dev.substvars
+	echo misc:Pre-Depends= >> debian/libnftnl-dev.substvars
+	dpkg-gencontrol -plibnftnl-dev -ldebian/changelog -Tdebian/libnftnl-dev.substvars -Pdebian/libnftnl-dev
+	echo misc:Depends= >> debian/libnftnl11.substvars
+	echo misc:Pre-Depends= >> debian/libnftnl11.substvars
+	install -d debian/.debhelper/libnftnl11/dbgsym-root/DEBIAN
+	dpkg-gencontrol -plibnftnl11 -ldebian/changelog -Tdebian/libnftnl11.substvars -Pdebian/.debhelper/libnftnl11/dbgsym-root -UPre-Depends -URecommends -USuggests -UEnhances -UProvides -UEssential -UConflicts -DPriority=optional -UHomepage -UImportant -DAuto-Built-Package=debug-symbols -DPackage=libnftnl11-dbgsym "-DDepends=libnftnl11 (= \${binary:Version})" "-DDescription=debug symbols for libnftnl11" -DBuild-Ids=71f4007f2894bf6375ed6474e7dbd2113cac9631 -DSection=debug "-DReplaces=libnftnl-dbg (<< 1.0.7-2~)" "-DBreaks=libnftnl-dbg (<< 1.0.7-2~)"
+	chmod 0644 -- debian/libnftnl-dev/DEBIAN/control
+	chown 0:0 -- debian/libnftnl-dev/DEBIAN/control
+	chmod 0644 -- debian/.debhelper/libnftnl11/dbgsym-root/DEBIAN/control
+	chown 0:0 -- debian/.debhelper/libnftnl11/dbgsym-root/DEBIAN/control
+	dpkg-gencontrol -plibnftnl11 -ldebian/changelog -Tdebian/libnftnl11.substvars -Pdebian/libnftnl11
+	chmod 0644 -- debian/libnftnl11/DEBIAN/control
+	chown 0:0 -- debian/libnftnl11/DEBIAN/control
+   dh_md5sums
+	cd debian/libnftnl11 >/dev/null && xargs -r0 md5sum | perl -pe 'if (s@^\\@@) { s/\\\\/\\/g; }' > DEBIAN/md5sums
+	cd debian/libnftnl-dev >/dev/null && xargs -r0 md5sum | perl -pe 'if (s@^\\@@) { s/\\\\/\\/g; }' > DEBIAN/md5sums
+	chmod 0644 -- debian/libnftnl11/DEBIAN/md5sums
+	chown 0:0 -- debian/libnftnl11/DEBIAN/md5sums
+	chmod 0644 -- debian/libnftnl-dev/DEBIAN/md5sums
+	chown 0:0 -- debian/libnftnl-dev/DEBIAN/md5sums
+	cd debian/.debhelper/libnftnl11/dbgsym-root >/dev/null && xargs -r0 md5sum | perl -pe 'if (s@^\\@@) { s/\\\\/\\/g; }' > DEBIAN/md5sums
+	chmod 0644 -- debian/.debhelper/libnftnl11/dbgsym-root/DEBIAN/md5sums
+	chown 0:0 -- debian/.debhelper/libnftnl11/dbgsym-root/DEBIAN/md5sums
+   dh_builddeb
+	dpkg-deb --build debian/libnftnl11 ..
+	dpkg-deb --build debian/.debhelper/libnftnl11/dbgsym-root ..
+	dpkg-deb --build debian/libnftnl-dev ..
+dpkg-deb: building package 'libnftnl11' in '../libnftnl11_1.1.2-2_amd64.deb'.
+dpkg-deb: building package 'libnftnl-dev' in '../libnftnl-dev_1.1.2-2_amd64.deb'.
+dpkg-deb: building package 'libnftnl11-dbgsym' in '../libnftnl11-dbgsym_1.1.2-2_amd64.deb'.
+FAKEROOTKEY=1314034145 LD_LIBRARY_PATH=:/opt/intel/lib/intel64_lin:/opt/intel/tbb/lib/intel64/gcc4.7 LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libfakeroot/libfakeroot-sysv.so debian/rules binary
+ dpkg-genbuildinfo --build=binary
+ dpkg-genchanges --build=binary >../libnftnl_1.1.2-2_amd64.changes
+dpkg-genchanges: info: binary-only upload (no source code included)
+ dpkg-source --after-build .
+dpkg-source: info: using options from pkg-libnfntl/debian/source/options: --extend-diff-ignore=(^|/)(compile|config\.sub|config\.guess|Makefile|configure|Makefile\.in|aclocal.m4|config.h.in|depcomp|INSTALL|install-sh|ltmain.sh|missing||libtool.m4|lt~obsolete.m4|ltoptions.m4|ltsugar.m4|ltversion.m4|.Po)
+dpkg-buildpackage: info: binary-only upload (no source included)
+Now running lintian libnftnl_1.1.2-2_amd64.changes ...
+Finished running lintian.

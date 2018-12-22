@@ -1,0 +1,16 @@
+808481aafd675f7475dccfbd2b0a71d3  usr/include/libnftnl/batch.h
+8bf9621ac72f1aed6eb8f7d88caef936  usr/include/libnftnl/chain.h
+2b7b1b7f4ab198bcb093195c4a29e79b  usr/include/libnftnl/common.h
+48ffdaa0d546d4333a5ed548b42283fb  usr/include/libnftnl/expr.h
+6bac1fa156c24e641c832440fa7b01e9  usr/include/libnftnl/flowtable.h
+0a5db950061186ad8ea48d71ed39390b  usr/include/libnftnl/gen.h
+c3b9d06620185d060972009dd3784c8a  usr/include/libnftnl/object.h
+845f4247405fe1290a39885d2da46d91  usr/include/libnftnl/rule.h
+4de4250993f9d2cb97766bac49464028  usr/include/libnftnl/ruleset.h
+939405cbafeb294f4fa0af01dc43b562  usr/include/libnftnl/set.h
+85cc737ee9469299abf2b26197f4c574  usr/include/libnftnl/table.h
+a846b921e7171bef3001a8374ed05bae  usr/include/libnftnl/trace.h
+60c5c39b35d176717e933c1dcb5ee4ac  usr/include/libnftnl/udata.h
+7b1eb0636fefbf0ca45fff9b572ef1c1  usr/lib/x86_64-linux-gnu/pkgconfig/libnftnl.pc
+f64d5dd8f0d1ece02a95870ec2c0ee9b  usr/share/doc/libnftnl-dev/changelog.Debian.gz
+010cfd657b1d30350611142349e47b79  usr/share/doc/libnftnl-dev/copyright

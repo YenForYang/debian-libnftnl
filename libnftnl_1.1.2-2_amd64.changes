@@ -1,0 +1,33 @@
+Format: 1.8
+Date: Mon, 03 Dec 2018 12:20:58 +0100
+Source: libnftnl
+Binary: libnftnl11 libnftnl-dev
+Built-For-Profiles: nobiarch nocheck nodoc
+Architecture: amd64
+Version: 1.1.2-2
+Distribution: unstable
+Urgency: medium
+Maintainer: Debian Netfilter Packaging Team <pkg-netfilter-team@lists.alioth.debian.org>
+Changed-By: Arturo Borrero Gonzalez <arturo@debian.org>
+Description:
+ libnftnl-dev - Development files for libnftnl
+ libnftnl11 - Netfilter nftables userspace API library
+Changes:
+ libnftnl (1.1.2-2) unstable; urgency=medium
+ .
+   * [e3e8611] d/tests: remove tests
+Checksums-Sha1:
+ 2914ccd86f0583b472491eefaa4106fb2fc0c549 11008 libnftnl-dev_1.1.2-2_amd64.deb
+ 19d2d59ed2ca691723cfff64127e9c39cd74d490 170660 libnftnl11-dbgsym_1.1.2-2_amd64.deb
+ 01784f1e0f4aef4017b65c5d1a3e4409cd1871c2 76036 libnftnl11_1.1.2-2_amd64.deb
+ 44a219f5b11a6dea283c41f596f060bc1eff5ff2 6059 libnftnl_1.1.2-2_amd64.buildinfo
+Checksums-Sha256:
+ b8f0b8141c3e592d8297973a127ce0031151fd0d599e2343109acf3abc8b3c90 11008 libnftnl-dev_1.1.2-2_amd64.deb
+ be5d5a46129f3a1bb7687ecc79b1e2ea63e1327d02b09e96185f72b2ba1a8d6d 170660 libnftnl11-dbgsym_1.1.2-2_amd64.deb
+ d60fc64c97a782cffffcf2e64885c93df09fe4cbd71d333c7ba8c2e42288885a 76036 libnftnl11_1.1.2-2_amd64.deb
+ 995f2cd96536ddb505f1b3f3e99409635ebe61b587d58fa40df9aa7195f91c78 6059 libnftnl_1.1.2-2_amd64.buildinfo
+Files:
+ 089b2fcd61d3cec6a79466217a3c636b 11008 libdevel optional libnftnl-dev_1.1.2-2_amd64.deb
+ 06455c7365f8c81373661841f305bed2 170660 debug optional libnftnl11-dbgsym_1.1.2-2_amd64.deb
+ ab31578dcca11187a3f3838a2a5cf153 76036 libs optional libnftnl11_1.1.2-2_amd64.deb
+ 0f7a6a21819a7f5693795f6a4611634b 6059 libs optional libnftnl_1.1.2-2_amd64.buildinfo

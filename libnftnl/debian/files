@@ -1,0 +1,4 @@
+libnftnl-dev_1.1.2-2_amd64.deb libdevel optional
+libnftnl11-dbgsym_1.1.2-2_amd64.deb debug optional automatic=yes
+libnftnl11_1.1.2-2_amd64.deb libs optional
+libnftnl_1.1.2-2_amd64.buildinfo libs optional

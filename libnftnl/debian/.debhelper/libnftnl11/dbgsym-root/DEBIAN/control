@@ -1,0 +1,15 @@
+Package: libnftnl11-dbgsym
+Source: libnftnl
+Version: 1.1.2-2
+Auto-Built-Package: debug-symbols
+Architecture: amd64
+Maintainer: Debian Netfilter Packaging Team <pkg-netfilter-team@lists.alioth.debian.org>
+Installed-Size: 213
+Depends: libnftnl11 (= 1.1.2-2)
+Breaks: libnftnl-dbg (<< 1.0.7-2~)
+Replaces: libnftnl-dbg (<< 1.0.7-2~)
+Section: debug
+Priority: optional
+Multi-Arch: same
+Description: debug symbols for libnftnl11
+Build-Ids: 71f4007f2894bf6375ed6474e7dbd2113cac9631
